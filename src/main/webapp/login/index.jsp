@@ -16,11 +16,17 @@
     String code = request.getParameter("code");
     String appId = "wx2f07b03f14b9bfcf";
     String appsecret = "7a004e0e42e8f444bc291e4d4a8c188b";
+    //KYJODMbDfh3EAUZFahvmikkdmLeP9V9TbOadygaeDQCke7BXnGuPHCjPykU-Gh29Kgvg2PAaKBUMsLWjoDcOQhfXhAXDCwXd12j7_u1WFsUZCKdAAAQTB
 //    HttpClient client = new HttpClient();
 //    String url = String.format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code", appid, appsecret, code);
 //    HttpMethod get = new GetMethod(url);
 //    client.executeMethod(get);
-    String result = WXUtil.code2accessToken(appId, appsecret, code);
+//    String result = WXUtil.code2accessToken(appId, appsecret, code);
+    WXUtil.WXClient wxc = new WXUtil.WXClient(request, appId, appsecret);
+    String accessToken = wxc.getAccessTokenByCode(code);
+    if (accessToken != null) {
+        response.sendRedirect("hello.jsp");
+    }
 %>
 
 <html>
@@ -40,9 +46,10 @@
                 </div>
                 <div id="msg"class="panel-body">
                     <p>正在更新code <%= code%></p>
-                    <p class="text-primary">更新结果: <%= result%></p>
+                    <p class="text-primary">更新结果: <%= accessToken%></p>
 
                 </div>
+
             </div>
 
         </div>
@@ -74,32 +81,32 @@
         }
 //        $('#msg').append("<p>开始...</p>");
         println('开始...');
-        $.ajax(
-                url,
-                {
-                    data: {
-                        appid: appid,
-                        appsecret: appsecret,
-                        code: code,
-                        grant_type: 'authorization_code'
-                    },
-                    success: function (json) {
-                        $('#msg').append(JSON.stringify(json));
-                    },
-                    error: function (event, textStatus, errorThrown) {
-                        error('请求错误!');
-                        error(errorThrown);
-                    }
-                }
-        );
-        wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: appid, // 必填，公众号的唯一标识
-            timestamp: '20170307', // 必填，生成签名的时间戳
-            nonceStr: '', // 必填，生成签名的随机串
-            signature: '', // 必填，签名，见附录1
-            jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        });
+//        $.ajax(
+//                url,
+//                {
+//                    data: {
+//                        appid: appid,
+//                        appsecret: appsecret,
+//                        code: code,
+//                        grant_type: 'authorization_code'
+//                    },
+//                    success: function (json) {
+//                        $('#msg').append(JSON.stringify(json));
+//                    },
+//                    error: function (event, textStatus, errorThrown) {
+//                        error('请求错误!');
+//                        error(errorThrown);
+//                    }
+//                }
+//        );
+//        wx.config({
+//            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+//            appId: appid, // 必填，公众号的唯一标识
+//            timestamp: '20170307', // 必填，生成签名的时间戳
+//            nonceStr: '', // 必填，生成签名的随机串
+//            signature: '', // 必填，签名，见附录1
+//            jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+//        });
 //        $.ajaxError(function (event) {
 //            error('请求错误!');
 //            error(event);
