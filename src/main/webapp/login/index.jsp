@@ -6,11 +6,6 @@
 
 <%@page import="cn.easyxue.wx.util.WXConfig"%>
 <%@page import="cn.easyxue.wx.util.WXClient"%>
-<%@page import="org.apache.commons.httpclient.methods.GetMethod"%>
-<%@page import="org.apache.commons.httpclient.HttpMethod"%>
-<%@page import="org.apache.http.client.methods.HttpGet"%>
-<%@page import="org.apache.commons.httpclient.HttpURL"%>
-<%@page import="org.apache.commons.httpclient.HttpClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
