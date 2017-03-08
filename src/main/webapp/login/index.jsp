@@ -4,7 +4,8 @@
     Author     : MaYichao
 --%>
 
-<%@page import="cn.easyxue.wx.wxtest.WXUtil"%>
+<%@page import="cn.easyxue.wx.util.WXConfig"%>
+<%@page import="cn.easyxue.wx.util.WXClient"%>
 <%@page import="org.apache.commons.httpclient.methods.GetMethod"%>
 <%@page import="org.apache.commons.httpclient.HttpMethod"%>
 <%@page import="org.apache.http.client.methods.HttpGet"%>
@@ -14,16 +15,17 @@
 <!DOCTYPE html>
 <%
     String code = request.getParameter("code");
-    String appId = "wx2f07b03f14b9bfcf";
-    String appsecret = "7a004e0e42e8f444bc291e4d4a8c188b";
+//    String appId = "wx2f07b03f14b9bfcf";
+//    String appsecret = "7a004e0e42e8f444bc291e4d4a8c188b";
     //KYJODMbDfh3EAUZFahvmikkdmLeP9V9TbOadygaeDQCke7BXnGuPHCjPykU-Gh29Kgvg2PAaKBUMsLWjoDcOQhfXhAXDCwXd12j7_u1WFsUZCKdAAAQTB
 //    HttpClient client = new HttpClient();
 //    String url = String.format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code", appid, appsecret, code);
 //    HttpMethod get = new GetMethod(url);
 //    client.executeMethod(get);
 //    String result = WXUtil.code2accessToken(appId, appsecret, code);
-    WXUtil.WXClient wxc = new WXUtil.WXClient(request, appId, appsecret);
-    String accessToken = wxc.getAccessTokenByCode(code);
+    WXClient wxc = new WXClient(request, WXConfig.getTestWXConfig());
+//    String accessToken = wxc.getAccessTokenByCode(code);
+    String accessToken = wxc.getAccessToken();
     if (accessToken != null) {
         response.sendRedirect("hello.jsp");
     }

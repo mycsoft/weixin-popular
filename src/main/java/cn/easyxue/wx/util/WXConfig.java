@@ -22,6 +22,7 @@ public class WXConfig {
     }
 
     public static WXConfig createWXConfig(String appId, String appsecret) {
+        assert appId != null && appsecret != null;
         WXConfig wxc = new WXConfig();
         wxc.appId = appId;
         wxc.appsecret = appsecret;

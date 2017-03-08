@@ -4,12 +4,11 @@
     Author     : MaYichao
 --%>
 
-<%@page import="cn.easyxue.wx.wxtest.WXUtil"%>
+<%@page import="cn.easyxue.wx.util.WXConfig"%>
+<%@page import="cn.easyxue.wx.util.WXClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String appId = "wx2f07b03f14b9bfcf";
-    String appsecret = "7a004e0e42e8f444bc291e4d4a8c188b";
-    WXUtil.WXClient wxc = new WXUtil.WXClient(request, appId, appsecret);
+    WXClient wxc = new WXClient(request, WXConfig.getTestWXConfig());
     String accessToken = wxc.getAccessToken();
 
 %>
