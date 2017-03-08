@@ -6,6 +6,7 @@
 package cn.easyxue.wx.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import weixin.popular.api.SnsAPI;
@@ -25,7 +26,7 @@ import weixin.popular.util.JsUtil;
 public class WXClient {
 
     private static Log log = LogFactory.getLog(WXClient.class);
- 
+
 //    private String appId;
 //    private String appsecret;
     private String accessToken;
@@ -81,7 +82,12 @@ public class WXClient {
     public static WXClient create(HttpServletRequest request) {
 
         assert request != null;
-        WXClient wxc = new WXClient();
+        HttpSession session = request.getSession();
+        WXClient wxc = (WXClient) session.getAttribute("easyxue.WXClient");
+        if (wxc == null) {
+            wxc = new WXClient();
+            session.setAttribute("easyxue.WXClient", wxc);
+        }
         wxc.request = request;
 //        this.wxc = config;
 //        TokenManager.init(wxc.getAppId(), wxc.getAppsecret());

@@ -16,7 +16,7 @@
     String token = wxc.getAccessToken();
 //    String jsTicket = wxc.getJsTicket();
 //    String wxConfigJson = wxc.createJsConfigJSON(request);
-    
+
     User user = wxc.getUserInfo();
 
 %>
@@ -33,12 +33,13 @@
     <body>
         <div class="container">
             <div class="page-header">
-                <h1><span id="name">尊敬的用户</span>,<small>你好!</small></h1>
+                
+                <h1><img id="headimage" class="img-rounded" src="<%= user.getHeadimgurl()%>" style="max-width: 56px;margin-right: 10px"/><span id="name"><%= user.getNickname()%></span>,<small>你好!</small></h1>
             </div>
 
         </div>
 
-        <dl class="dl-horizontal bg-primary">
+        <dl class="dl-horizontal bg-primary container">
             <dt>OpenID</dt>
             <dd><%= sToken.getOpenid()%></dd>
 
@@ -47,18 +48,21 @@
             <dt>Ticket</dt>
             <dd><%--= jsTicket--%></dd>
         </dl>
-        <dl class="dl-horizontal">
+
+        
+        <dl class="dl-horizontal container ">
             <dt>名称</dt>
-            <dd id="name"><%= user.getNickname() %></dd>
+            <dd id="name"><%= user.getNickname()%></dd>
             <dt>头像</dt>
-            <dd><img id="headimage" class="img-round" src="<%= user.getHeadimgurl() %>"/></dd>
+            <dd><img id="headimage" class="img-rounded img-responsive" src="<%= user.getHeadimgurl()%>" style="max-width: 56px"/></dd>
+
 
             <dt>性别</dt>
-            <dd id="sex"><%= user.getSex() %></dd>
+            <dd id="sex"><%= user.getSex()%></dd>
 
 
             <dt>unionid</dt>
-            <dd id="unionid"><%= user.getUnionid() %></dd>
+            <dd id="unionid"><%= user.getUnionid()%></dd>
 
         </dl>
 
