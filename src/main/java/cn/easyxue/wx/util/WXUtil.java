@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cn.easyxue.wx.wxtest;
+package cn.easyxue.wx.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -32,6 +32,7 @@ public class WXUtil {
      * @param code
      * @return
      */
+    @Deprecated
     public static String code2accessToken(String appId, String appsecret, String code) {
 //        HttpClient client = new HttpClient();
         String url = String.format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code", appId, appsecret, code);
@@ -86,6 +87,7 @@ public class WXUtil {
         private String accessToken;
         private HttpServletRequest request;
 
+        @Deprecated
         public WXClient(HttpServletRequest request, String appId, String appsecret) {
 
             assert request != null && appId != null && appsecret != null;
