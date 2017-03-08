@@ -4,6 +4,7 @@
     Author     : MaYichao
 --%>
 
+<%@page import="weixin.popular.bean.sns.SnsToken"%>
 <%@page import="cn.easyxue.wx.util.WXConfig"%>
 <%@page import="cn.easyxue.wx.util.WXClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,10 +19,10 @@
 //    HttpMethod get = new GetMethod(url);
 //    client.executeMethod(get);
 //    String result = WXUtil.code2accessToken(appId, appsecret, code);
-    WXClient wxc = new WXClient(request, WXConfig.getTestWXConfig());
-//    String accessToken = wxc.getAccessTokenByCode(code);
-    String accessToken = wxc.getAccessToken();
-    if (accessToken != null) {
+    WXClient wxc = WXClient.create(request);
+    SnsToken token = wxc.createSnsToken(code);
+//    String accessToken = wxc.getAccessToken();
+    if (token != null) {
         response.sendRedirect("hello.jsp");
     }
 %>
@@ -43,7 +44,7 @@
                 </div>
                 <div id="msg"class="panel-body">
                     <p>正在更新code <%= code%></p>
-                    <p class="text-primary">更新结果: <%= accessToken%></p>
+                    <p class="text-primary">更新结果: <%--= accessToken --%></p>
 
                 </div>
 
